@@ -1,4 +1,4 @@
-require 'bike'
+require 'docking_station'
 
 describe Bike do
   describe '#working?' do
