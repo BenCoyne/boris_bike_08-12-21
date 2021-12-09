@@ -4,25 +4,25 @@ describe DockingStation do
 
     describe "#release_bike" do
       docking_station = DockingStation.new
-      it { is_expected.to respond_to(:release_bike) }
-    end
+      it { is_expected.to respond_to :release_bike }
 
-    describe "#release_bike" do
-      it "releases a bike" do
-        expect(subject.release_bike).to be_a Bike
+      it "raises error when there are no bikes in the docking station" do
+        expect{ subject.release_bike }.to raise_error(RuntimeError, "Dock Empty Error")
       end
 
       it "released bike, then check if bike works" do
-        expect(subject.release_bike.working?).to eq(true)
+        bike = Bike.new
+        subject.dock_bike(bike)
+        expect(subject.release_bike.working?).to eq true
       end
     end
 
     describe "#dock_bike" do
-      it { is_expected.to respond_to(:dock_bike)}
+      it { is_expected.to respond_to(:dock_bike).with(1).argument}
     end
     
       it "docks a bike object" do
         bike = Bike.new
-        expect(subject.dock_bike(bike)).to eq(bike)
+        expect(subject.dock_bike(bike)).to eq bike
       end
 end

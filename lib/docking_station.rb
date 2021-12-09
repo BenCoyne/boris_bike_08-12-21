@@ -4,12 +4,12 @@ class Bike
   end
 end 
 
-
 class DockingStation
   attr_reader :bike
 
   def release_bike
-    Bike.new
+    raise RuntimeError, "Dock Empty Error" unless @bike
+    @bike
   end
 
   def dock_bike(bike)
