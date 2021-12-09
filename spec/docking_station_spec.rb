@@ -27,7 +27,8 @@ describe DockingStation do
       end
 
       it "raises error when the capacity of the docking station is exceeded (MAX 1 BIKE)" do
-        subject.dock_bike(Bike.new)
+        20.times { subject.dock_bike(Bike.new) }
         expect{ subject.dock_bike(Bike.new) }.to raise_error(RuntimeError, "Dock Capacity Limit Exceeded Error")
       end
 end
+
