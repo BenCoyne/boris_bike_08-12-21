@@ -18,11 +18,11 @@ describe DockingStation do
     end
 
     describe "#dock_bike" do
-      # docking_station = DockingStation.new
       it { is_expected.to respond_to(:dock_bike)}
     end
     
-      it "adds a Bike object into @dock" do
-        expect(subject.dock_bike(Bike)).to eq(Bike)
+      it "docks a bike object" do
+        bike = Bike.new
+        expect(subject.dock_bike(bike)).to eq(bike)
       end
 end
