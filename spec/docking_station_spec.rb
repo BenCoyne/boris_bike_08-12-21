@@ -23,11 +23,13 @@ describe DockingStation do
     
       it "docks a bike object" do
         bike = Bike.new
-        expect(subject.dock_bike(bike)).to eq bike
+        expect(subject.dock_bike(bike)).to eq [bike]
       end
 
-      it "raises error when the capacity of the docking station is exceeded (MAX 1 BIKE)" do
-        20.times { subject.dock_bike(Bike.new) }
+      it "raises error when the DEFAULT_CAPACITY of the docking station is exceeded (MAX 20 BIKES)" do
+        DockingStation::DEFAULT_CAPACITY.times do 
+          subject.dock_bike(Bike.new) 
+        end
         expect{ subject.dock_bike(Bike.new) }.to raise_error(RuntimeError, "Dock Capacity Limit Exceeded Error")
       end
 end
