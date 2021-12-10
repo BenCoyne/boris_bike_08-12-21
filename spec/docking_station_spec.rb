@@ -1,6 +1,15 @@
 require 'docking_station'
 
 describe DockingStation do
+    describe "#initialization" do
+      it "allows user to assign capacity of the docking_station of new DockingStation instances" do
+        expect{ subject = DockingStation.new(20) }.to_not raise_error
+      end
+    
+      it "assigns a default value of DEFAULT_CAPACITY to @capacity if none provided" do
+        expect(subject.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+      end
+    end
 
     describe "#release_bike" do
       docking_station = DockingStation.new
@@ -27,9 +36,7 @@ describe DockingStation do
       end
 
       it "raises error when the DEFAULT_CAPACITY of the docking station is exceeded (MAX 20 BIKES)" do
-        DockingStation::DEFAULT_CAPACITY.times do 
-          subject.dock_bike(Bike.new) 
-        end
+        subject.capacity.times { subject.dock_bike(Bike.new) } 
         expect{ subject.dock_bike(Bike.new) }.to raise_error(RuntimeError, "Dock Capacity Limit Exceeded Error")
       end
 end

@@ -5,10 +5,12 @@ class Bike
 end 
 
 class DockingStation
+  attr_reader :capacity, :bike_store
   DEFAULT_CAPACITY = 20
   
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
     @bike_store = []
+    @capacity = capacity
   end
 
   def dock_bike(bike)
@@ -18,17 +20,17 @@ class DockingStation
 
   def release_bike
     raise RuntimeError, "Dock Empty Error" if empty?
-    @bike_store.pop
+    bike_store.pop
   end
 
   private
   
   def full?
-    @bike_store.size >= DEFAULT_CAPACITY
+    bike_store.size >= capacity
   end
 
   def empty?
-    @bike_store.empty?
+    bike_store.empty?
   end
 end
 
